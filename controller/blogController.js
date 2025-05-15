@@ -110,10 +110,10 @@ const updateBlogCtrl = async (req, res) => {
   
 const getAllBlogCtrl=async(req, res)=>{
     try {
-       const AllBlogs=await blogModel.find({})
+       const allbogs=await blogModel.find({}).populate('user')
        return res.status(200).json({
-        blogCount:AllBlogs.length,
-        AllBlogs
+        blogCount:allbogs.length,
+        allbogs
        }) 
     } catch (error) {
         return res.status(500).json({
