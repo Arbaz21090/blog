@@ -20,6 +20,6 @@ const blogSchema=new mongoose.Schema({
         required:[true, "user id is required"]
     }
 
-})
+}, {timestamps:true})
 const blogModel=mongoose.model("blog", blogSchema)
 module.exports=blogModel
