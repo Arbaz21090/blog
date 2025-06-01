@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../redux/authSlice";
+import { useLocation } from "react-router-dom";
 
 import {
   AppBar,
@@ -25,6 +26,7 @@ const Header = () => {
   const [value, setValue] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
+  const location = useLocation();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -38,6 +40,7 @@ const Header = () => {
   const menuItems = [
     { label: "Blogs", path: "/blogs" },
     { label: "My Blogs", path: "/my-blogs" },
+    { label: "Create Blogs", path: "/create-blogs" },
   ];
 
   const authButtons = isAuthenticated
@@ -118,8 +121,8 @@ const Header = () => {
             <>
               {isAuthenticated && (
                 <Tabs
-                  value={value}
-                  onChange={(e, newValue) => setValue(newValue)}
+                  value={location.pathname}
+                  onChange={(e, newValue) => navigate(newValue)}
                   textColor="inherit"
                   indicatorColor="secondary"
                   sx={{ mx: "auto" }}
@@ -128,8 +131,7 @@ const Header = () => {
                     <Tab
                       key={item.label}
                       label={item.label}
-                      component={Link}
-                      to={item.path}
+                      value={item.path} // this tells which tab is "active"
                     />
                   ))}
                 </Tabs>

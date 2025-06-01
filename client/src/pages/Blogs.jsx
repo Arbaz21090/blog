@@ -28,7 +28,9 @@ const Blogs = () => {
     <>
       {blogs?.map((blog, index) => (
         <div key={index}>
-          <BlogsCard blog={blog} />
+          <BlogsCard 
+          blog={blog}
+           />
         </div>
       ))}
     </>
