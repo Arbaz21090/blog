@@ -69,7 +69,7 @@ const navigate=useNavigate();
       const { data } = await axios.post("http://localhost:5000/api/v1/login", formData);
       toast.success(data.message || "Login successful!", { position: "top-center" });
        localStorage.setItem('userId', data?.user.id)
-      dispatch(loginSuccess())
+      dispatch(loginSuccess());
      
       navigate('/')
       setFormData({ email: "", password: "" });
